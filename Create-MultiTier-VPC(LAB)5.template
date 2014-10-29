@@ -5,84 +5,94 @@
 
     "Parameters": {
 
-        "VPCName": {
-            "Description": "Name of the VPC",
+		"Environment": {
+            "Description": "Environment",
             "Type": "String",
-            "Default": "aws-achaplin-infra-vpc",
-            "AllowedPattern": "[-a-zA-Z0-9]*",
-            "ConstraintDescription": "can contain only alphanumeric characters and dashes."
+            "Default": "lab",
+			"MinLength": "3",
+			"MaxLength":"4",
+            "AllowedPattern": "[a-z]*",
+            "ConstraintDescription": "Can contain only lowercase alphanumeric characters."
         },
 
-        "PublicSubnetAZAName": {
-            "Description": "Name of the public subnet in availability zone A",
+		"Network": {
+            "Description": "Network",
             "Type": "String",
-            "Default": "aws-achaplin-pubweb-aza-subnet",
-            "AllowedPattern": "[-a-zA-Z0-9]*",
-            "ConstraintDescription": "can contain only alphanumeric characters and dashes."
+            "Default": "achaplin",
+			"MinLength": "3",
+			"MaxLength":"15",
+            "AllowedPattern": "[a-z]*",
+            "ConstraintDescription": "Can contain only lowercase alphanumeric characters."
         },
 
-        "PublicSubnetAZBName": {
-            "Description": "Name of the public subnet in availability zone B",
+		"VPCCIDRBlock": {
+            "Description": "CIDR Block for the VPC",
             "Type": "String",
-            "Default": "aws-achaplin-pubweb-azb-subnet",
-            "AllowedPattern": "[-a-zA-Z0-9]*",
-            "ConstraintDescription": "can contain only alphanumeric characters and dashes."
+            "Default": "192.168.0.0/16",
+			"MinLength": "10",
+			"MaxLength":"18",
+            "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
+            "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
         },
 
-        "PublicSubnetAZCName": {
-            "Description": "Name of the public subnet in availability zone C",
+        "PublicSubnetAZACIDR": {
+            "Description": "The subnet for the public subnet in availability zone A",
             "Type": "String",
-            "Default": "aws-achaplin-pubweb-azc-subnet",
-            "AllowedPattern": "[-a-zA-Z0-9]*",
-            "ConstraintDescription": "can contain only alphanumeric characters and dashes."
+            "Default": "192.168.0.0/24",
+			"MinLength": "10",
+			"MaxLength":"18",
+            "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
+            "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
         },
 
-        "PrivateSubnetAZAName": {
-            "Description": "Name of the private subnet in availability zone A",
+        "PublicSubnetAZBCIDR": {
+            "Description": "The subnet for the public subnet in availability zone B",
             "Type": "String",
-            "Default": "aws-achaplin-prvapp-aza-subnet",
-            "AllowedPattern": "[-a-zA-Z0-9]*",
-            "ConstraintDescription": "can contain only alphanumeric characters and dashes."
+            "Default": "192.168.1.0/24",
+			"MinLength": "10",
+			"MaxLength":"18",
+            "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
+            "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
         },
 
-        "PrivateSubnetAZBName": {
-            "Description": "Name of the private subnet in availability zone B",
+        "PublicSubnetAZCCIDR": {
+            "Description": "The subnet for the public subnet in availability zone C",
             "Type": "String",
-            "Default": "aws-achaplin-prvapp-azb-subnet",
-            "AllowedPattern": "[-a-zA-Z0-9]*",
-            "ConstraintDescription": "can contain only alphanumeric characters and dashes."
+            "Default": "192.168.2.0/24",
+			"MinLength": "10",
+			"MaxLength":"18",
+            "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
+            "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
         },
 
-        "PrivateSubnetAZCName": {
-            "Description": "Name of the private subnet in availability zone C",
+        "PrivateSubnetAZACIDR": {
+            "Description": "NThe subnet for the private subnet in availability zone A",
             "Type": "String",
-            "Default": "aws-achaplin-prvapp-azc-subnet",
-            "AllowedPattern": "[-a-zA-Z0-9]*",
-            "ConstraintDescription": "can contain only alphanumeric characters and dashes."
+            "Default": "192.168.16.0/24",
+			"MinLength": "10",
+			"MaxLength":"18",
+            "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
+            "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
         },
 
-        "InternetGatewayName": {
-            "Description": "Name of the internet gateway",
+        "PrivateSubnetAZBCIDR": {
+            "Description": "The subnet for the private subnet in availability zone B",
             "Type": "String",
-            "Default": "aws-achaplin-igw",
-            "AllowedPattern": "[-a-zA-Z0-9]*",
-            "ConstraintDescription": "can contain only alphanumeric characters and dashes."
+            "Default": "192.168.17.0/24",
+			"MinLength": "10",
+			"MaxLength":"18",
+            "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
+            "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
         },
 
-        "PublicRouteTableName": {
-            "Description": "Name of the public route table",
+        "PrivateSubnetAZCCIDR": {
+            "Description": "The subnet for the private subnet in availability zone C",
             "Type": "String",
-            "Default": "aws-achaplin-public-rtb",
-            "AllowedPattern": "[-a-zA-Z0-9]*",
-            "ConstraintDescription": "can contain only alphanumeric characters and dashes."
-        },
-
-        "PublicNetworkACLName": {
-            "Description": "Name of the public network ACL",
-            "Type": "String",
-            "Default": "aws-achaplin-public-acl",
-            "AllowedPattern": "[-a-zA-Z0-9]*",
-            "ConstraintDescription": "can contain only alphanumeric characters and dashes."
+            "Default": "192.168.18.0/24",
+			"MinLength": "10",
+			"MaxLength":"18",
+            "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
+            "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
         },
 
         "KeyName": {
@@ -162,17 +172,8 @@
             "ap-northeast-1": { "64HVMEBS": "needs populating", "64HVMGP2": "needs populating", "64PV": "needs populating" },
             "ap-southeast-1": { "64HVMEBS": "needs populating", "64HVMGP2": "needs populating", "64PV": "needs populating" },
             "sa-east-1": { "64HVMEBS": "needs populating", "64HVMGP2": "needs populating", "64PV": "needs populating" }
-        },
-
-        "SubnetConfig": {
-            "VPC": { "CIDR": "192.168.0.0/16" },
-            "PublicAZA": { "CIDR": "192.168.0.0/24" },
-            "PublicAZB": { "CIDR": "192.168.1.0/24" },
-            "PublicAZC": { "CIDR": "192.168.2.0/24" },
-            "PrivateAZA": { "CIDR": "192.168.16.0/24" },
-            "PrivateAZB": { "CIDR": "192.168.17.0/24" },
-            "PrivateAZC": { "CIDR": "192.168.18.0/24" }
         }
+
     },
 
     "Resources": {
@@ -182,9 +183,9 @@
             "Properties": {
                 "EnableDnsSupport": "true",
                 "EnableDnsHostnames": "true",
-                "CidrBlock": { "Fn::FindInMap": [ "SubnetConfig", "VPC", "CIDR" ] },
+                "CidrBlock": { "Ref": "VPCCIDRBlock" },
                 "Tags": [
-                    { "Key": "Name", "Value": { "Ref": "VPCName" } },
+                    { "Key": "Name", "Value": { "Fn::Join" : [ "-", [ "aws", { "Ref": "Environment" }, { "Ref": "Network" }, "vpc" ] ] } },
                     { "Key": "ServiceName", "Value": { "Ref": "ServiceName" } },
                     { "Key": "ServiceOwner", "Value": { "Ref": "ServiceOwner" } },
                     { "Key": "ServiceTeam", "Value": { "Ref": "ServiceTeam" } },
@@ -197,10 +198,10 @@
             "Type": "AWS::EC2::Subnet",
             "Properties": {
                 "VpcId": { "Ref": "VPC" },
-                "CidrBlock": { "Fn::FindInMap": [ "SubnetConfig", "PublicAZA", "CIDR" ] },
+                "CidrBlock": { "Ref": "PublicSubnetAZACIDR" },
                 "AvailabilityZone": "eu-west-1a",
                 "Tags": [
-                    { "Key": "Name", "Value": { "Ref": "PublicSubnetAZAName" } },
+                    { "Key": "Name", "Value": { "Fn::Join" : [ "-", [ "aws", { "Ref": "Environment" }, { "Ref": "Network" }, "public","aza", "subnet" ] ] } },
                     { "Key": "ServiceName", "Value": { "Ref": "ServiceName" } },
                     { "Key": "ServiceOwner", "Value": { "Ref": "ServiceOwner" } },
                     { "Key": "ServiceTeam", "Value": { "Ref": "ServiceTeam" } },
@@ -213,10 +214,10 @@
             "Type": "AWS::EC2::Subnet",
             "Properties": {
                 "VpcId": { "Ref": "VPC" },
-                "CidrBlock": { "Fn::FindInMap": [ "SubnetConfig", "PublicAZB", "CIDR" ] },
+                "CidrBlock": { "Ref": "PublicSubnetAZBCIDR" },
                 "AvailabilityZone": "eu-west-1b",
                 "Tags": [
-                    { "Key": "Name", "Value": { "Ref": "PublicSubnetAZBName" } },
+                    { "Key": "Name", "Value": { "Fn::Join": [ "-", [ "aws", { "Ref": "Environment" }, { "Ref": "Network" }, "public","azb", "subnet" ] ] } },
                     { "Key": "ServiceName", "Value": { "Ref": "ServiceName" } },
                     { "Key": "ServiceOwner", "Value": { "Ref": "ServiceOwner" } },
                     { "Key": "ServiceTeam", "Value": { "Ref": "ServiceTeam" } },
@@ -229,10 +230,58 @@
             "Type": "AWS::EC2::Subnet",
             "Properties": {
                 "VpcId": { "Ref": "VPC" },
-                "CidrBlock": { "Fn::FindInMap": [ "SubnetConfig", "PublicAZC", "CIDR" ] },
+                "CidrBlock": { "Ref": "PublicSubnetAZCCIDR" },
                 "AvailabilityZone": "eu-west-1c",
                 "Tags": [
-                    { "Key": "Name", "Value": { "Ref": "PublicSubnetAZCName" } },
+                    { "Key": "Name", "Value": { "Fn::Join" : [ "-", [ "aws", { "Ref": "Environment" }, { "Ref": "Network" }, "public","azc", "subnet" ] ] } },
+                    { "Key": "ServiceName", "Value": { "Ref": "ServiceName" } },
+                    { "Key": "ServiceOwner", "Value": { "Ref": "ServiceOwner" } },
+                    { "Key": "ServiceTeam", "Value": { "Ref": "ServiceTeam" } },
+                    { "Key": "Department", "Value": { "Ref": "Department" } }
+                ]
+            }
+        },
+
+		"PrivateSubnetAZA": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "VpcId": { "Ref": "VPC" },
+                "CidrBlock": { "Ref": "PrivateSubnetAZACIDR" },
+                "AvailabilityZone": "eu-west-1a",
+                "Tags": [
+                    { "Key": "Name", "Value": { "Fn::Join" : [ "-", [ "aws", { "Ref": "Environment" }, { "Ref": "Network" }, "private","aza", "subnet" ] ] } },
+                    { "Key": "ServiceName", "Value": { "Ref": "ServiceName" } },
+                    { "Key": "ServiceOwner", "Value": { "Ref": "ServiceOwner" } },
+                    { "Key": "ServiceTeam", "Value": { "Ref": "ServiceTeam" } },
+                    { "Key": "Department", "Value": { "Ref": "Department" } }
+                ]
+            }
+        },
+
+        "PrivateSubnetAZB": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "VpcId": { "Ref": "VPC" },
+                "CidrBlock": { "Ref": "PrivateSubnetAZBCIDR" },
+                "AvailabilityZone": "eu-west-1b",
+                "Tags": [
+                    { "Key": "Name", "Value": { "Fn::Join" : [ "-", [ "aws", { "Ref": "Environment" }, { "Ref": "Network" }, "private","azb", "subnet" ] ] } },
+                    { "Key": "ServiceName", "Value": { "Ref": "ServiceName" } },
+                    { "Key": "ServiceOwner", "Value": { "Ref": "ServiceOwner" } },
+                    { "Key": "ServiceTeam", "Value": { "Ref": "ServiceTeam" } },
+                    { "Key": "Department", "Value": { "Ref": "Department" } }
+                ]
+            }
+        },
+
+        "PrivateSubnetAZC": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+                "VpcId": { "Ref": "VPC" },
+                "CidrBlock": { "Ref": "PrivateSubnetAZCCIDR" },
+                "AvailabilityZone": "eu-west-1c",
+                "Tags": [
+                    { "Key": "Name", "Value": { "Fn::Join" : [ "-", [ "aws", { "Ref": "Environment" }, { "Ref": "Network" }, "private","azc", "subnet" ] ] } },
                     { "Key": "ServiceName", "Value": { "Ref": "ServiceName" } },
                     { "Key": "ServiceOwner", "Value": { "Ref": "ServiceOwner" } },
                     { "Key": "ServiceTeam", "Value": { "Ref": "ServiceTeam" } },
@@ -245,7 +294,7 @@
             "Type": "AWS::EC2::InternetGateway",
             "Properties": {
                 "Tags": [
-                    { "Key": "Name", "Value": { "Ref": "InternetGatewayName" } },
+                    { "Key": "Name", "Value": { "Fn::Join" : [ "-", [ "aws", { "Ref": "Environment" }, { "Ref": "Network" }, "igw" ] ] } },
                     { "Key": "ServiceName", "Value": { "Ref": "ServiceName" } },
                     { "Key": "ServiceOwner", "Value": { "Ref": "ServiceOwner" } },
                     { "Key": "ServiceTeam", "Value": { "Ref": "ServiceTeam" } },
@@ -267,7 +316,7 @@
             "Properties": {
                 "VpcId": { "Ref": "VPC" },
                 "Tags": [
-                    { "Key": "Name", "Value": { "Ref": "PublicRouteTableName" } },
+                    { "Key": "Name", "Value": { "Fn::Join" : [ "-", [ "aws", { "Ref": "Environment" }, { "Ref": "Network" }, "public", "rtb" ] ] } },
                     { "Key": "ServiceName", "Value": { "Ref": "ServiceName" } },
                     { "Key": "ServiceOwner", "Value": { "Ref": "ServiceOwner" } },
                     { "Key": "ServiceTeam", "Value": { "Ref": "ServiceTeam" } },
@@ -310,12 +359,60 @@
             }
         },
 
+		"PrivateRouteTable": {
+            "Type": "AWS::EC2::RouteTable",
+            "Properties": {
+                "VpcId": { "Ref": "VPC" },
+                "Tags": [
+                    { "Key": "Name", "Value": { "Fn::Join" : [ "-", [ "aws", { "Ref": "Environment" }, { "Ref": "Network" }, "private", "rtb" ] ] } },
+                    { "Key": "ServiceName", "Value": { "Ref": "ServiceName" } },
+                    { "Key": "ServiceOwner", "Value": { "Ref": "ServiceOwner" } },
+                    { "Key": "ServiceTeam", "Value": { "Ref": "ServiceTeam" } },
+                    { "Key": "Department", "Value": { "Ref": "Department" } }
+                ]
+            }
+        },
+
+        "PrivateRoute": {
+            "Type": "AWS::EC2::Route",
+            "DependsOn": "NATInstance",
+            "Properties": {
+                "RouteTableId": { "Ref": "PrivateRouteTable" },
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "InstanceId": { "Ref": "NATInstance" }
+            }
+        },
+
+        "PrivateSubnetAZARouteTableAssociation": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "SubnetId": { "Ref": "PrivateSubnetAZA" },
+                "RouteTableId": { "Ref": "PrivateRouteTable" }
+            }
+        },
+
+        "PrivateSubnetAZBRouteTableAssociation": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "SubnetId": { "Ref": "PrivateSubnetAZB" },
+                "RouteTableId": { "Ref": "PrivateRouteTable" }
+            }
+        },
+
+        "PrivateSubnetAZCRouteTableAssociation": {
+            "Type": "AWS::EC2::SubnetRouteTableAssociation",
+            "Properties": {
+                "SubnetId": { "Ref": "PrivateSubnetAZC" },
+                "RouteTableId": { "Ref": "PrivateRouteTable" }
+            }
+        },
+
         "PublicNetworkAcl": {
             "Type": "AWS::EC2::NetworkAcl",
             "Properties": {
                 "VpcId": { "Ref": "VPC" },
                 "Tags": [
-                    { "Key": "Name", "Value": { "Ref": "PublicNetworkACLName" } },
+                    { "Key": "Name", "Value": { "Fn::Join": [ "-", [ "aws", { "Ref": "Environment" }, { "Ref": "Network" }, "public", "nacl" ] ] } },
                     { "Key": "ServiceName", "Value": { "Ref": "ServiceName" } },
                     { "Key": "ServiceOwner", "Value": { "Ref": "ServiceOwner" } },
                     { "Key": "ServiceTeam", "Value": { "Ref": "ServiceTeam" } },
@@ -426,15 +523,93 @@
             }
         },
 
-        "NAT1EIP": {
-            "Type": "AWS::EC2::EIP",
+		"PrivateNetworkAcl": {
+            "Type": "AWS::EC2::NetworkAcl",
             "Properties": {
-                "Domain": "vpc",
-                "InstanceId": { "Ref": "NAT1Instance" }
+                "VpcId": { "Ref": "VPC" },
+                "Tags": [
+                    { "Key": "Name", "Value": { "Fn::Join": [ "-", [ "aws", { "Ref": "Environment" }, { "Ref": "Network" }, "private", "nacl" ] ] } },
+                    { "Key": "ServiceName", "Value": { "Ref": "ServiceName" } },
+                    { "Key": "ServiceOwner", "Value": { "Ref": "ServiceOwner" } },
+                    { "Key": "ServiceTeam", "Value": { "Ref": "ServiceTeam" } },
+                    { "Key": "Department", "Value": { "Ref": "Department" } }
+                ]
             }
         },
 
-        "NAT1Instance": {
+		"InboundWellknownPrivateNetworkAclEntry": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+                "NetworkAclId": { "Ref": "PrivateNetworkAcl" },
+                "RuleNumber": "100",
+                "Protocol": "6",
+                "RuleAction": "allow",
+                "Egress": "false",
+                "CidrBlock": "192.168.0.0/20",
+                "PortRange": { "From": "1", "To": "1023" }
+            }
+        },
+
+        "InboundEmphemeralPrivateNetworkAclEntry": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+                "NetworkAclId": { "Ref": "PrivateNetworkAcl" },
+                "RuleNumber": "101",
+                "Protocol": "6",
+                "RuleAction": "allow",
+                "Egress": "false",
+                "CidrBlock": "192.168.0.0/20",
+                "PortRange": { "From": "1024", "To": "65535" }
+            }
+        },
+
+        "OutboundPrivateNetworkAclEntry": {
+            "Type": "AWS::EC2::NetworkAclEntry",
+            "Properties": {
+                "NetworkAclId": { "Ref": "PrivateNetworkAcl" },
+                "RuleNumber": "100",
+                "Protocol": "6",
+                "RuleAction": "allow",
+                "Egress": "true",
+                "CidrBlock": "0.0.0.0/0",
+                "PortRange": { "From": "0", "To": "65535" }
+            }
+        },
+
+        "PrivateSubnetAZANetworkAclAssociation": {
+            "Type": "AWS::EC2::SubnetNetworkAclAssociation",
+            "Properties": {
+                "SubnetId": { "Ref": "PrivateSubnetAZA" },
+                "NetworkAclId": { "Ref": "PrivateNetworkAcl" }
+            }
+        },
+
+        "PrivateSubnetAZBNetworkAclAssociation": {
+            "Type": "AWS::EC2::SubnetNetworkAclAssociation",
+            "Properties": {
+                "SubnetId": { "Ref": "PrivateSubnetAZB" },
+                "NetworkAclId": { "Ref": "PrivateNetworkAcl" }
+            }
+        },
+
+        "PrivateSubnetAZCNetworkAclAssociation": {
+            "Type": "AWS::EC2::SubnetNetworkAclAssociation",
+            "Properties": {
+                "SubnetId": { "Ref": "PrivateSubnetAZC" },
+                "NetworkAclId": { "Ref": "PrivateNetworkAcl" }
+            }
+        },
+
+
+        "NATInstanceEIP": {
+            "Type": "AWS::EC2::EIP",
+            "Properties": {
+                "Domain": "vpc",
+                "InstanceId": { "Ref": "NATInstance" }
+            }
+        },
+
+        "NATInstance": {
             "Type": "AWS::EC2::Instance",
             "DependsOn": "GatewayToInternet",
             "Properties": {
@@ -449,6 +624,15 @@
                         "DeleteOnTermination": "true",
                         "SubnetId": { "Ref": "PublicSubnetAZA" }
                     }
+                ],
+				"Tags": [
+                    { "Key": "Name", "Value": { "Fn::Join": [ "-", [ "aws", { "Ref": "Environment" }, { "Ref": "Network" }, "nat", "i", "01" ] ] } },
+                    { "Key": "ServiceName", "Value": { "Ref": "ServiceName" } },
+                    { "Key": "ServiceOwner", "Value": { "Ref": "ServiceOwner" } },
+                    { "Key": "ServiceTeam", "Value": { "Ref": "ServiceTeam" } },
+                    { "Key": "Department", "Value": { "Ref": "Department" } },
+					{ "Key": "CostCode", "Value": { "Ref": "CostCode" } },
+					{ "Key": "AutoShutdown", "Value": { "Ref": "AutoShutdown" } }
                 ]
             }
         },
@@ -464,6 +648,13 @@
                 ],
                 "SecurityGroupEgress": [
                     { "IpProtocol": "-1", "FromPort": "0", "ToPort": "65535", "CidrIp": "0.0.0.0/0" }
+                ],
+				"Tags": [
+                    { "Key": "Name", "Value": { "Fn::Join": [ "-", [ "aws", { "Ref": "Environment" }, { "Ref": "Network" }, "nat", "sg" ] ] } },
+                    { "Key": "ServiceName", "Value": { "Ref": "ServiceName" } },
+                    { "Key": "ServiceOwner", "Value": { "Ref": "ServiceOwner" } },
+                    { "Key": "ServiceTeam", "Value": { "Ref": "ServiceTeam" } },
+                    { "Key": "Department", "Value": { "Ref": "Department" } }
                 ]
             }
         }
@@ -488,7 +679,7 @@
             },
             "DNSName": {
                 "Description": "DNS Name of the NAT instance",
-                "Value": { "Fn::GetAtt": [ "NAT1Instance", "PublicDnsName" ] }
+                "Value": { "Fn::GetAtt": [ "NATInstance", "PublicDnsName" ] }
             }
         }
     }
