@@ -28,7 +28,17 @@
 		"VPCCIDRBlock": {
             "Description": "CIDR Block for the VPC",
             "Type": "String",
-            "Default": "192.168.0.0/16",
+            "Default": "192.168.0.0/21",
+			"MinLength": "10",
+			"MaxLength":"18",
+            "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
+            "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
+        },
+
+		"PublicSubnetCIDRBlock": {
+            "Description": "The CIDR block for the public subnets",
+            "Type": "String",
+            "Default": "192.168.0.0/23",
 			"MinLength": "10",
 			"MaxLength":"18",
             "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
@@ -55,10 +65,20 @@
             "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
         },
 
+		"PrivateSubnetCIDRBlock": {
+            "Description": "The CIDR block for the private subnets",
+            "Type": "String",
+            "Default": "192.168.4.0/23",
+			"MinLength": "10",
+			"MaxLength":"18",
+            "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
+            "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
+        },
+
         "PrivateSubnetAZACIDR": {
             "Description": "The subnet for the private subnet in availability zone A",
             "Type": "String",
-            "Default": "192.168.8.0/24",
+            "Default": "192.168.4.0/24",
 			"MinLength": "10",
 			"MaxLength":"18",
             "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
@@ -68,7 +88,7 @@
         "PrivateSubnetAZBCIDR": {
             "Description": "The subnet for the private subnet in availability zone B",
             "Type": "String",
-            "Default": "192.168.9.0/24",
+            "Default": "192.168.5.0/24",
 			"MinLength": "10",
 			"MaxLength":"18",
             "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
@@ -135,7 +155,7 @@
 
 		"AutoShutdown": {
             "Type": "String",
-            "Default": "0",
+            "Default": "19:00",
             "AllowedPattern": "[:0-9]*",
             "ConstraintDescription": "can contain only numeric characters and semi colon."
         }
@@ -440,7 +460,7 @@
                 "Protocol": "-1",
                 "RuleAction": "allow",
                 "Egress": "false",
-                "CidrBlock": "192.168.0.0/21"
+                "CidrBlock": { "Ref": "PublicSubnetCIDRBlock" }
             }
         },
 
@@ -559,7 +579,7 @@
                 "Protocol": "-1",
                 "RuleAction": "allow",
                 "Egress": "false",
-                "CidrBlock": "192.168.8.0/21"
+                "CidrBlock": { "Ref": "PrivateSubnetCIDRBlock" }
             }
         },
 
@@ -610,7 +630,7 @@
                 "Protocol": "-1",
                 "RuleAction": "allow",
                 "Egress": "true",
-                "CidrBlock": "192.168.8.0/21"
+                "CidrBlock": { "Ref": "PrivateSubnetCIDRBlock" }
             }
         },
 
@@ -685,7 +705,7 @@
                 "VpcId": { "Ref": "VPC" },
                 "SecurityGroupIngress": [
                     { "IpProtocol": "tcp", "FromPort": "22", "ToPort": "22", "CidrIp": { "Ref": "SSHRDPFrom" } },
-                    { "IpProtocol": "-1", "FromPort": "0", "ToPort": "65535", "CidrIp": "192.168.0.0/16" }
+                    { "IpProtocol": "-1", "FromPort": "0", "ToPort": "65535", "CidrIp": { "Ref": "VPCCIDRBlock" } }
                 ],
                 "SecurityGroupEgress": [
                     { "IpProtocol": "-1", "FromPort": "0", "ToPort": "65535", "CidrIp": "0.0.0.0/0" }
