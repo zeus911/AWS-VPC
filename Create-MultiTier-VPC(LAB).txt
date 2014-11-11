@@ -1,0 +1,19 @@
+The following steps still need to be manually performed against the relevant VPC resources:
+
+	Name the default Route Table - aws-<environment>-<network>-default-rtb
+	Name the default Network ACL - aws-<environment>-<network>-default-nacl
+	Name the default Security Group - aws-<environment>-<network>-default-sg
+
+
+192.168.0.0/21	VPC
+	192.168.0.0/23	Public Tier 1
+		192.168.0.0/24	Public Subnet AZ-A
+		192.168.1.0/24	Public Subnet AZ-B
+
+	192.168.2.0/23	Public Spare
+
+	192.168.4.0/23	Private Tier 1
+		192.168.4.0/24	Private Subnet AZ-A
+		192.168.5.0/24	Private Subnet AZ-B
+
+	192.168.6.0/23	Private Spare
