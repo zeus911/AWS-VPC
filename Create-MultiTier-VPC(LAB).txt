@@ -1,8 +1,11 @@
 The following steps still need to be manually performed against the relevant VPC resources:
 
+	NOTE: The default RTB/NACL/SG don't appear to be linked to the CF template, but must be created by the trigger of creating a VPC.
+
 	Name the default Route Table - aws-<environment>-<network>-default-rtb
 	Name the default Network ACL - aws-<environment>-<network>-default-nacl
 	Name the default Security Group - aws-<environment>-<network>-default-sg
+	Name the NAT Instance Volume - 
 
 
 192.168.0.0/21	VPC
